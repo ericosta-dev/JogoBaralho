@@ -17,19 +17,24 @@ public class Carta {
     public String getNAIPE() {
         return this.NAIPE;
     }
-    
+    //Verificar com laura o pq se não fazer a mudança
+    //Ver se é possível o SwitchCase
     @Override
     public String toString() {
         String aux = "";
-        
-        if ("1".equals(FACE)){        //Se a FACE for igual a 1,trocar para Ás
+        /*
+        ("x".equals(FACE))
+        Se o x for igual a face, usa o auxiliar para mudar o valor 
+        da face da carta
+        */
+        if ( 1 == FACE){        
             aux = "Ás";
-        }else if ("11".equals(FACE)){ //Se a FACE for igual a 11,trocar para J
+        }else if (11 == FACE){ 
             aux = "J";
         
-        }else if ("12".equals(FACE)){ //Se a FACE for igual a 12,trocar para Q
+        }else if (12 == FACE){ 
             aux = "Q";
-        }else if ("13".equals(FACE)){ //Se a FACE for igual a 13,trocar para K
+        }else if (13 == FACE){ 
             aux = "K";
         }
         /*

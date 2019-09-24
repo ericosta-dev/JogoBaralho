@@ -43,6 +43,9 @@ public class Jogo {
             jogadore.mostrarCartas();
         }
     }
+    
+    /*caso as faces dadas sejam iguais, o cont sera true no final
+    validando a condição*/
     private boolean verificaTrinca(Carta a, Carta b, Carta c) {
         boolean cont= false;
         if (a.getFACE() == b.getFACE() && a.getFACE() == c.getFACE()) {
@@ -52,6 +55,9 @@ public class Jogo {
         }
         return cont;
     }
+    
+    /*caso seja uma sequencia, o cont sera true no final
+    validando a condição*/
     private boolean verificaSeq(Carta a, Carta b, Carta c) {
         boolean cont = false;
         if (b.getFACE() == (a.getFACE() + 1) && c.getFACE() == (a.getFACE() + 2) && verificaNaipe(a, b, c)) {
@@ -61,33 +67,43 @@ public class Jogo {
         }
         return cont;
     }
+    
+    //Criado para verificar se o naipe são diferentes para a sequencia
     private boolean verificaNaipe(Carta a, Carta b, Carta c) {
         return (a.getNAIPE() != b.getNAIPE() && b.getNAIPE() != c.getNAIPE());
     }
+    
+    /*
+    Caso tenha o cont igual a 3 na chamada das verificações o sistema da 
+    o jogo como vitoria do jogador que requisitou a validação
+    */
     private boolean verificaVitoria(int jogador) {
         int cont = 0;
         boolean acabar = false;
         Carta a, b, c;
-        do {
+        /*acrescentar um for de 3 voltas para verificação*/
+        
+         
+        for (int i = 0; i < 3 ; i++){
             System.out.println("\nSelecione o jogo EM ORDEM: ");
             a = jogadores[jogador].getCarta(entrada.nextInt());
             b = jogadores[jogador].getCarta(entrada.nextInt());
             c = jogadores[jogador].getCarta(entrada.nextInt());
-            if (cont < 3) {
+            
                 if (verificaTrinca(a, b, c)) {
                     cont++;
                 } else if (verificaSeq(a, b, c)) {
                     cont++;
                 } else {
                     System.out.println("Você PERDEU (Mão não vitoriosa)");
-                    acabar = true;
+                    return false;
                 }
-            } else if (cont == 3) {
-                acabar = true;
-            }
-        } while (cont < 3 && acabar == false);
+                //acabar = (cont==3) ? true : false;
+                acabar = (cont==3);
+        }
         return acabar;
     }
+    
     private Carta opcPuxar(int jogador) {
         Carta cartaPuxada = null;
         do {
@@ -125,6 +141,11 @@ public class Jogo {
         } while (cartaPuxada == null);
         return cartaPuxada;
     }
+    
+    /*
+    Menu para interagir com o usuário fazendo as mecanicas de retirar
+    uma carta a mão do jogador.  Selecionando por índice do vetor.
+    */
     private void opcDescartar(int jogador, Carta cartaPuxada) {
         int remover;
         do {
@@ -142,11 +163,14 @@ public class Jogo {
             }
         } while (remover > 10 || remover < 1);
     }
+    
+    /*método criado para executar o jogo, mostrando as cartas e opções para
+    selecionar se deseja bater ou não*/
     public void executar() {
         boolean fim = false;
         int jogador = 0;
         Carta cartaPuxada;
-
+       
         do {
             System.out.println("Jogo => Cartas jogador:"+jogadores[jogador].getNome());
             jogadores[jogador].mostrarCartas();

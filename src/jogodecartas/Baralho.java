@@ -7,7 +7,8 @@ public class Baralho {
     private final Carta[] CARTAS;
     private final Random ALEATORIO;
     private int contador;
-    private int primeiraCarta = 51;//Criado para o jogador pegar a primeira carta da pilha
+    //Criado para o jogador pegar a primeira carta da pilha
+    private int primeiraCarta = 51;
 
     public Baralho() {
         ALEATORIO = new Random();
@@ -24,11 +25,10 @@ public class Baralho {
         }
     }
      
-    
+    //Retorna a carta do topo da pilha (baralho)
     public Carta comprarBaralho(){
         return CARTAS[primeiraCarta--];
     }
-    
     
     public Carta[] distribuirCartas(int qtdCartas) {
         System.out.println("Jogo =>   DISTRIBUINDO BARALHO");
@@ -42,10 +42,11 @@ public class Baralho {
 
         return cartasJogador;
     }
+    
     public int getPrimeiraCarta() {
         return primeiraCarta;
     }
-   
+    
     public void embaralhar() {
         System.out.println("Jogo =>   EMBARALHANDO");
         int num, num2;
@@ -58,12 +59,11 @@ public class Baralho {
             CARTAS[num2] = temp;
         }
     }
+    
     public void mostrarBaralho() {
         System.out.println("Jogo =>   APRESENTANDO BARALHO");
         for (Carta carta : CARTAS) {
             System.out.println(carta.toString());
         }
-    }
-
-    
+    }   
 }

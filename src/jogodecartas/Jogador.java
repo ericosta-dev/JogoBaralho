@@ -15,9 +15,9 @@ public class Jogador {
         return cartas[i - 1];
     }
 
-    /*
-    trocar carta da mão por uma selecionada
-    */
+    
+    //trocar carta da mão por uma selecionada
+    
     public void trocarCarta(int i, Carta c) {
         cartas[i - 1] = c;
     }
